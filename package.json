@@ -1,0 +1,8 @@
+{
+  "name": "bytemarket-launcher",
+  "private": true,
+  "scripts": {
+    "postinstall": "cd backend && npm install && npx prisma generate",
+    "start": "cd backend && npm start"
+  }
+}
