@@ -65,8 +65,8 @@ const Login: React.FC = () => {
         <button className="btn btn--primary btn--block" type="submit" disabled={loading}>
           {loading ? "Logging in..." : "Log in"}
         </button>
-        <p className="muted" style={{ textAlign: "center", marginTop: "0.5rem" }}>
-          Don't have an account? <Link to="/register" style={{ color: "var(--teal)", fontWeight: 600 }}>Sign up</Link>
+        <p className="muted">
+          Don't have an account? <Link to="/register" className="auth-link">Sign up</Link>
         </p>
       </form>
     </div>

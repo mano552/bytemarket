@@ -43,7 +43,7 @@ const GoogleSignInButton: React.FC<GoogleSignInButtonProps> = ({ onToken }) => {
     window.google.accounts.id.renderButton(buttonRef.current, {
       theme: "outline",
       size: "large",
-      width: "320",
+      width: String(Math.min(buttonRef.current.offsetWidth || 360, 400)),
     });
   }, [clientId, onToken]);
 
@@ -55,7 +55,7 @@ const GoogleSignInButton: React.FC<GoogleSignInButtonProps> = ({ onToken }) => {
     );
   }
 
-  return <div ref={buttonRef} />;
+  return <div ref={buttonRef} style={{ width: "100%", overflow: "hidden" }} />;
 };
 
 export default GoogleSignInButton;

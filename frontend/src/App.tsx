@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link, useLocation } from "react-router-dom";
 import { AuthProvider, useAuth } from "./context/AuthContext";
 import { CartProvider, useCart } from "./context/CartContext";
 import { Role } from "./types";
@@ -17,6 +17,13 @@ import Footer from "./components/Footer";
 const Nav: React.FC = () => {
   const { user, token, logout } = useAuth();
   const { items, refreshCart } = useCart();
+  const [menuOpen, setMenuOpen] = React.useState(false);
+  const location = useLocation();
+
+  // Close mobile menu on route change
+  React.useEffect(() => {
+    setMenuOpen(false);
+  }, [location.pathname]);
 
   useEffect(() => {
     if (token) refreshCart();
@@ -30,15 +37,15 @@ const Nav: React.FC = () => {
         <Link to="/" className="brand">
           <span className="brand__mark">◆</span>bytemarket
         </Link>
-        <nav className="nav-links">
+        <nav className="nav-links" aria-label="Main navigation">
           <Link to="/shop">Shop</Link>
           <Link to="/orders">Orders</Link>
           {user?.role === Role.Admin && <Link to="/admin/products">Admin</Link>}
         </nav>
         <div className="nav-account">
-          <Link to="/cart" className="cart-link">
+          <Link to="/cart" className="cart-link" aria-label={`Cart, ${cartCount} items`}>
             Cart
-            {cartCount > 0 && <span className="cart-badge">{cartCount}</span>}
+            {cartCount > 0 && <span className="cart-badge" aria-hidden="true">{cartCount}</span>}
           </Link>
           {user ? (
             <>
@@ -58,8 +65,71 @@ const Nav: React.FC = () => {
             </>
           )}
         </div>
+        {/* Mobile hamburger */}
+        <button
+          className="nav-toggle"
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={menuOpen}
+          onClick={() => setMenuOpen((v) => !v)}
+        >
+          {menuOpen ? "✕" : "☰"}
+        </button>
       </div>
+      {/* Mobile drawer */}
+      <nav className={`nav-mobile${menuOpen ? " is-open" : ""}`} aria-label="Mobile navigation">
+        <Link to="/shop">Shop</Link>
+        <Link to="/orders">Orders</Link>
+        {user?.role === Role.Admin && <Link to="/admin/products">Admin</Link>}
+        <div className="nav-mobile__divider" />
+        <Link to="/cart" className="cart-link">
+          Cart {cartCount > 0 && <span className="cart-badge">{cartCount}</span>}
+        </Link>
+        {user ? (
+          <>
+            <span className="nav-mobile__user">
+              Signed in as {user.name}
+            </span>
+            <button onClick={logout}>Log out</button>
+          </>
+        ) : (
+          <>
+            <Link to="/login">Log in</Link>
+            <Link to="/register">Sign up</Link>
+          </>
+        )}
+      </nav>
     </header>
+  );
+};
+
+const AppRoutes: React.FC = () => {
+  const { pathname } = useLocation();
+  const isLanding = pathname === "/";
+
+  return (
+    <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
+      <Nav />
+      <main className={isLanding ? "main main--landing" : "main page"}>
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/shop" element={<Products />} />
+          <Route path="/products/:id" element={<ProductDetail />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/orders" element={<Orders />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route
+            path="/admin/products"
+            element={
+              <AdminRoute>
+                <AdminProducts />
+              </AdminRoute>
+            }
+          />
+        </Routes>
+      </main>
+      <Footer />
+    </div>
   );
 };
 
@@ -68,27 +138,7 @@ const App: React.FC = () => {
     <AuthProvider>
       <CartProvider>
         <BrowserRouter>
-          <Nav />
-          <main className="page">
-            <Routes>
-              <Route path="/" element={<Landing />} />
-              <Route path="/shop" element={<Products />} />
-              <Route path="/products/:id" element={<ProductDetail />} />
-              <Route path="/cart" element={<Cart />} />
-              <Route path="/orders" element={<Orders />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
-              <Route
-                path="/admin/products"
-                element={
-                  <AdminRoute>
-                    <AdminProducts />
-                  </AdminRoute>
-                }
-              />
-            </Routes>
-          </main>
-          <Footer />
+          <AppRoutes />
         </BrowserRouter>
       </CartProvider>
     </AuthProvider>

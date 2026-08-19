@@ -9,10 +9,16 @@ const Products: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [products, setProducts] = useState<Product[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
-  const [search, setSearch] = useState<string>("");
+  const [search, setSearch] = useState<string>(searchParams.get("search") ?? "");
   const [selectedCategory, setSelectedCategory] = useState<string>(searchParams.get("category") ?? "");
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+
+  // Sync filters when URL query params change (e.g. from landing page search)
+  useEffect(() => {
+    setSearch(searchParams.get("search") ?? "");
+    setSelectedCategory(searchParams.get("category") ?? "");
+  }, [searchParams]);
 
   // Load categories once for the filter dropdown
   useEffect(() => {

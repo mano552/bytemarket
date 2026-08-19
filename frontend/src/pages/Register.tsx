@@ -77,8 +77,8 @@ const Register: React.FC = () => {
         <button className="btn btn--primary btn--block" type="submit" disabled={loading}>
           {loading ? "Creating account..." : "Create account"}
         </button>
-        <p className="muted" style={{ textAlign: "center", marginTop: "0.5rem" }}>
-          Already have an account? <Link to="/login" style={{ color: "var(--teal)", fontWeight: 600 }}>Log in</Link>
+        <p className="muted">
+          Already have an account? <Link to="/login" className="auth-link">Log in</Link>
         </p>
       </form>
     </div>

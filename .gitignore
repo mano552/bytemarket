@@ -35,6 +35,12 @@ prisma/dev.db
 prisma/dev.db-journal
 
 # =========================
+# Uploads
+# =========================
+backend/uploads/*
+!backend/uploads/.gitkeep
+
+# =========================
 # Operating System Files
 # =========================
 .DS_Store
