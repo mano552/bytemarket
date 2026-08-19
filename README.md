@@ -42,7 +42,7 @@ A modern, fully-featured e-commerce application built with TypeScript, React, Ex
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/mano552/ecommerce-ts-project.git
+git clone https://github.com/mano552/bytemarket.git
 cd ecommerce-ts-project
 ```
 
@@ -91,7 +91,7 @@ copy .env.example .env
 npm run dev
 ```
 
-Frontend will run on `http://localhost:5173`
+Frontend will run on `http://localhost:5174`
 
 ## 📦 Database Schema
 
@@ -112,7 +112,7 @@ PORT=3000
 
 ### Frontend (.env)
 ```
-VITE_API_URL=http://localhost:5000/api
+VITE_API_URL=http://localhost:3000/api
 VITE_GOOGLE_CLIENT_ID=your-google-oauth-client-id (optional)
 ```
 
@@ -121,8 +121,8 @@ VITE_GOOGLE_CLIENT_ID=your-google-oauth-client-id (optional)
 After seeding, you can login with:
 
 **Admin Account:**
-- Email: `admin@example.com`
-- Password: `password`
+- Email: `admin@shop.com`
+- Password: `admin123`
 
 **Customer Account:**
 - Email: `user@example.com`
