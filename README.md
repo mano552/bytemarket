@@ -71,7 +71,7 @@ npx prisma db seed
 npm run dev
 ```
 
-Backend will run on `http://localhost:5000`
+Backend will run on `http://localhost:3000`
 
 ### 3. Setup Frontend
 
@@ -85,7 +85,7 @@ npm install
 copy .env.example .env
 
 # Update .env with backend URL
-# VITE_API_URL=http://localhost:5000/api
+# VITE_API_URL=http://localhost:3000/api
 
 # Start the development server
 npm run dev
@@ -116,7 +116,7 @@ VITE_API_URL=http://localhost:3000/api
 VITE_GOOGLE_CLIENT_ID=your-google-oauth-client-id (optional)
 ```
 
-## 👥 Default Users
+## 👥 Default User
 
 After seeding, you can login with:
 
@@ -124,9 +124,7 @@ After seeding, you can login with:
 - Email: `admin@shop.com`
 - Password: `admin123`
 
-**Customer Account:**
-- Email: `user@example.com`
-- Password: `password`
+
 
 ## 📱 Responsive Design
 

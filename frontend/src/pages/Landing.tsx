@@ -13,11 +13,11 @@ const CATEGORY_ICONS: Record<string, string> = {
 };
 
 const CATEGORY_IMAGES: Record<string, string> = {
-  Electronics: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&h=260&fit=crop",
-  Books: "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=400&h=260&fit=crop",
-  Fashion: "https://images.unsplash.com/photo-1445205170230-053b83016050?w=400&h=260&fit=crop",
-  "Home & Kitchen": "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=260&fit=crop",
-  "Sports & Outdoors": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=260&fit=crop",
+  Electronics: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&h=200&fit=crop&q=80",
+  Books: "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=400&h=200&fit=crop&q=80",
+  Fashion: "https://images.unsplash.com/photo-1445205170230-053b83016050?w=400&h=200&fit=crop&q=80",
+  "Home & Kitchen": "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=200&fit=crop&q=80",
+  "Sports & Outdoors": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=200&fit=crop&q=80",
 };
 
 const HERO_PARTICLES = Array.from({ length: 18 }, (_, i) => ({
@@ -275,7 +275,7 @@ const Landing: React.FC = () => {
             </div>
             <div className="deals-banner__visual">
               <img
-                src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=600&h=400&fit=crop"
+                src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=800&h=400&fit=crop&q=80"
                 alt="Shopping deals and discounts"
                 loading="lazy"
               />
