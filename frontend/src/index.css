@@ -211,12 +211,14 @@ img {
 }
 
 .nav-account__greeting {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
   color: rgba(255,255,255,0.85);
   font-size: 0.9rem;
-  max-width: 120px;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  max-width: 180px;
   white-space: nowrap;
+  overflow: visible;
 }
 
 /* Mobile hamburger */
@@ -1515,15 +1517,18 @@ button:disabled {
 
 .profile-icon {
   font-size: 1.1rem;
-  margin-right: 0.3rem;
   line-height: 1;
   display: inline-block;
+  flex-shrink: 0;
 }
 
 .nav-account__greeting {
   display: flex;
   align-items: center;
-  gap: 0.25rem;
+  gap: 0.35rem;
+  color: rgba(255,255,255,0.85);
+  font-size: 0.9rem;
+  white-space: nowrap;
 }
 
 @keyframes badgePop {
@@ -1819,6 +1824,12 @@ button:disabled {
 
 /* Tablet Landscape (1024px) */
 @media (max-width: 1024px) {
+  .nav-account__greeting {
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
   .hero__content { 
     grid-template-columns: 1fr;
     gap: 2rem;
