@@ -281,10 +281,11 @@ img {
 }
 
 .nav-mobile .cart-link {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 0.5rem;
   color: rgba(255,255,255,0.85);
+  font-size: 0.95rem;
 }
 
 .nav-mobile .cart-badge {
@@ -292,6 +293,7 @@ img {
   display: inline-block;
   transform: none;
   animation: none;
+  margin-left: 0.25rem;
 }
 
 /* ============ Layout ============ */
@@ -1486,7 +1488,14 @@ button:disabled {
   color: rgba(255,255,255,0.85);
   font-weight: 500;
   font-size: 0.9rem;
-  margin-right: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.cart-icon {
+  font-size: 1.25rem;
+  line-height: 1;
 }
 
 .cart-badge {
@@ -1502,6 +1511,19 @@ button:disabled {
   min-width: 16px;
   text-align: center;
   animation: badgePop 0.3s ease;
+}
+
+.profile-icon {
+  font-size: 1.1rem;
+  margin-right: 0.3rem;
+  line-height: 1;
+  display: inline-block;
+}
+
+.nav-account__greeting {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
 }
 
 @keyframes badgePop {
@@ -2448,14 +2470,18 @@ button:disabled {
 /* ============ Dark Mode Support ============ */
 @media (prefers-color-scheme: dark) {
   :root {
-    --ink: #E8EAED;
-    --navy: #1A1D23;
+    --ink: #F3F4F6;
+    --navy: #0F172A;
     --teal: #14B8A6;
     --teal-bright: #2DD4BF;
-    --bg: #0F1115;
-    --surface: #1A1D23;
-    --border: #2D3139;
-    --muted: #9CA3AF;
+    --bg: #020617;
+    --surface: #0F172A;
+    --border: #1E293B;
+    --muted: #94A3B8;
+    --danger: #EF4444;
+    --danger-bg: #7F1D1D;
+    --success-bg: #064E3B;
+    --success-text: #10B981;
   }
 
   body {
@@ -2463,14 +2489,28 @@ button:disabled {
     color: var(--ink);
   }
 
+  h1, h2, h3 {
+    color: #F9FAFB;
+  }
+
   .hero {
-    background: linear-gradient(135deg, #0F1115 0%, #1A1D23 100%);
+    background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+  }
+
+  .site-header {
+    background: #0F172A;
+    border-bottom-color: rgba(255,255,255,0.1);
+  }
+
+  .nav-mobile {
+    background: #0F172A;
+    border-top-color: rgba(255,255,255,0.1);
   }
 
   .skeleton-block,
   .skeleton-line,
   .skeleton-card__img {
-    background: linear-gradient(90deg, #2D3139 25%, #3D414A 50%, #2D3139 75%);
+    background: linear-gradient(90deg, #1E293B 25%, #334155 50%, #1E293B 75%);
     background-size: 200% 100%;
   }
 
@@ -2479,7 +2519,7 @@ button:disabled {
   .admin-row__media,
   .category-card__img,
   .hero__float-fallback {
-    background: linear-gradient(135deg, #1A1D23, #0F766E);
+    background: linear-gradient(135deg, #1E293B, #0F766E);
   }
 
   .btn--secondary {
@@ -2489,10 +2529,97 @@ button:disabled {
   }
 
   .btn--secondary:hover:not(:disabled) {
-    background: #2D3139;
+    background: #1E293B;
+    border-color: var(--teal);
+  }
+
+  .product-card,
+  .cart-item,
+  .order,
+  .auth-card,
+  .summary-card,
+  .admin-form,
+  .admin-table-wrap,
+  .newsletter {
+    background: var(--surface);
+    border-color: var(--border);
+  }
+
+  .product-card:hover,
+  .cart-item:hover,
+  .order:hover {
+    border-color: var(--teal-bright);
+  }
+
+  .field input,
+  .field textarea,
+  .field select,
+  .filter-bar__search,
+  .filter-bar__select,
+  .qty-input,
+  .newsletter__input {
+    background: #1E293B;
+    border-color: var(--border);
+    color: var(--ink);
+  }
+
+  .field input:focus,
+  .field textarea:focus,
+  .field select:focus,
+  .filter-bar__search:focus,
+  .filter-bar__select:focus {
+    background: #0F172A;
+    border-color: var(--teal-bright);
+  }
+
+  .site-footer {
+    background: #0F172A;
+  }
+
+  .site-footer__bottom {
+    border-top-color: rgba(255,255,255,0.1);
+  }
+
+  .price {
+    color: #F9FAFB;
+  }
+
+  .product-card__desc,
+  .product-detail__desc {
+    color: var(--muted);
+  }
+
+  .banner--error {
+    background: #7F1D1D;
+    color: #FCA5A5;
+  }
+
+  .banner--success {
+    background: #064E3B;
+    color: #6EE7B7;
+  }
+
+  .trust-bar__item {
+    background: var(--surface);
+  }
+
+  .trust-bar__item strong {
+    color: #F9FAFB;
+  }
+
+  .category-card__name {
+    color: #F9FAFB;
+  }
+
+  .admin-row__info strong {
+    color: #F9FAFB;
   }
 
   img {
-    opacity: 0.9;
+    opacity: 0.95;
+  }
+
+  .empty-state {
+    color: var(--muted);
   }
 }

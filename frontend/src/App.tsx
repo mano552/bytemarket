@@ -44,12 +44,15 @@ const Nav: React.FC = () => {
         </nav>
         <div className="nav-account">
           <Link to="/cart" className="cart-link" aria-label={`Cart, ${cartCount} items`}>
-            Cart
+            <span className="cart-icon">🛒</span>
             {cartCount > 0 && <span className="cart-badge" aria-hidden="true">{cartCount}</span>}
           </Link>
           {user ? (
             <>
-              <span className="nav-account__greeting">{user.name}</span>
+              <span className="nav-account__greeting">
+                <span className="profile-icon">👤</span>
+                {user.name}
+              </span>
               <button className="btn btn--ghost" onClick={logout}>
                 Log out
               </button>
@@ -82,12 +85,12 @@ const Nav: React.FC = () => {
         {user?.role === Role.Admin && <Link to="/admin/products">Admin</Link>}
         <div className="nav-mobile__divider" />
         <Link to="/cart" className="cart-link">
-          Cart {cartCount > 0 && <span className="cart-badge">{cartCount}</span>}
+          🛒 Cart {cartCount > 0 && <span className="cart-badge">{cartCount}</span>}
         </Link>
         {user ? (
           <>
             <span className="nav-mobile__user">
-              Signed in as {user.name}
+              👤 Signed in as {user.name}
             </span>
             <button onClick={logout}>Log out</button>
           </>
